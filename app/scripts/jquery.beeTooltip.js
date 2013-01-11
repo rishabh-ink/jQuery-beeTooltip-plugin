@@ -1,8 +1,34 @@
-(function($, window, undefined) {
+(function($, window, document, undefined) {
    "use strict";
 
-   $.fn.beeTooltip = function() {
-      console.log("beeTooltip initialized.");
+   if (typeof Object.create !== "function") {
+      Object.create = function(obj) {
+         function F() {};
+         F.prototype = obj;
+         return new F();
+      };
+   }
+
+   var BeeTooltip = {
+      initialize: function(userOptions) {
+         var self = this;
+
+         self.options = $.extend({}, $.fn.beeTooltip.options, userOptions);
+      }
    };
 
-})(jQuery, window);
+   $.fn.beeTooltip = function(userOptions) {
+
+      return this.each(function() {
+         var beeTooltip = Object.create(BeeTooltip);
+
+         beeTooltip.initialize(userOptions);
+         // Do your stuff here.
+      });
+
+      $.fn.beeTooltip.options = {
+         effect: "slide"
+      };
+   };
+
+})(jQuery, window, document);
