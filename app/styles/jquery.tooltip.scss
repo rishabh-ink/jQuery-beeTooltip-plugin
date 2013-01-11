@@ -1,0 +1,17 @@
+$imagePath: "../images";
+
+.tip {
+   width: 212px;
+   padding-top: 37px;
+   display: none;
+   position: absolute;
+   background: transparent url(#{$imagePath}/tipTop.png) no-repeat top;
+}
+
+.tipMid {
+   background: transparent url(#{$imagePath}/tipMid.png) repeat-y; padding: 0 25px 20px 25px;
+}
+
+.tipBtm {
+   background: transparent url(#{$imagePath}/tipBtm.png) no-repeat bottombottom; height: 32px;
+}
