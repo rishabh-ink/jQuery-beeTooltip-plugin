@@ -12,30 +12,40 @@
    }
 
    var BeeTooltip = {
-      initialize: function(userOptions, element) {
-         var self = this;
+      initialize: function(userOptions, tooltipParent) {
+         this.options = $.extend({}, $.fn.beeTooltip.options, userOptions);
+         this.tooltipParent = tooltipParent;
 
-         // Merge plugin options.
-         self.options = $.extend({}, $.fn.beeTooltip.options, userOptions);
+         this.tooltipParent.on("mouseover", $.proxy(this.bringUp, this));
+         this.tooltipParent.on("mouseout", $.proxy(this.bringDown, this));
 
-         self.element = element;
+         this.manageTitleAttribute();
 
-         // Create the HTML structure for the plugin.
-         self.createStructure();
+         return this;
       },
 
-      createStructure: function() {
-         var self = this,
-             $element = $(self.element);
+      bringUp: function() {
+         console.log("BeeTooltip.create(), this", this);
+         this.tooltipContainer = $(document.createElement("div"))
+                     .hide()
+                  .addClass("beeTooltip-container")
+               .text(this.tooltipParent.attr("data-original-title"))
+            .appendTo(this.tooltipParent)
+         .show(1000);
+      },
 
-         var el = $(document.createElement("span"))
-               .addClass("beeTooltip-container")
-            .text($element.attr("title"))
-         .appendTo($element);
+      bringDown: function() {
+         console.log("BeeTooltip.bringDown(), this", this);
 
-         console.log("BeeTooltip.createStructure(): Created element", {
-            el: el
-         });
+         this.tooltipContainer.detach();
+      },
+
+      manageTitleAttribute: function() {
+         var tpParent = this.tooltipParent;
+
+         if (tpParent.attr("title") || typeof(tpParent.attr("data-original-title")) != "string") {
+           tpParent.attr("data-original-title", tpParent.attr("title") || "").removeAttr("title");
+         }
       }
    };
 
@@ -44,16 +54,16 @@
          "this": this
       });
 
+      if(2 == "2") {}
+
       return this.each(function() {
-         var $element = $(this),
+         var tooltipParent = $(this),
              beeTooltip = Object.create(BeeTooltip);
 
          // Tooltips are only for elements having a `title` attribute.
-         if(null === $element.attr("title")) {
-            return false; // So skip the ones without it.
+         if(null !== tooltipParent.attr("title")) {
+            beeTooltip.initialize(userOptions, tooltipParent);
          }
-
-         beeTooltip.initialize(userOptions, $element);
       });
    };
 

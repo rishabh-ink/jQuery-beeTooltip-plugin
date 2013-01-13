@@ -1,7 +1,12 @@
-.beeTooltip-container {
-   display: none;
+.beeTooltip {
+  position: relative;
 }
 
-.beeTooltip:hover .beeTooltip-container {
-   display: block;
+.beeTooltip-container {
+  display: none;
+  position: absolute;
+  top: -2em;
+  background-color: #222222;
+  color: #ffffff;
+  white-space: nowrap;
 }
