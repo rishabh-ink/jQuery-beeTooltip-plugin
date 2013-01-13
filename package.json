@@ -1,7 +1,11 @@
 {
-  "author": "",
-  "name": "",
-  "version": "0.0.0",
-  "dependencies": {},
-  "devDependencies": {}
+  "author": "rishabhsrao",
+  "name": "jQuery beeTooltip plugin",
+  "version": "0.1.0",
+  "dependencies": {
+  	"jquery": "1.8.3"
+  },
+  "devDependencies": {
+  	"compass": "0.12"
+  }
 }
