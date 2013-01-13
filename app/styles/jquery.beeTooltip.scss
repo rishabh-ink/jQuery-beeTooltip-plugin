@@ -3,10 +3,14 @@
 }
 
 .beeTooltip-container {
+  // Basic required styles
   display: none;
   position: absolute;
   top: -2em;
-  background-color: #222222;
-  color: #ffffff;
   white-space: nowrap;
+
+  // Tooltip theme
+background-color: #ffc578; // Old browsers
+@include filter-gradient(#ffc578, #fb9d23, vertical); // IE6-9
+@include background-image(linear-gradient(top, hsla(34,100%,74%,1) 0%,hsla(34,96%,56%,1) 100%));
 }
