@@ -25,12 +25,15 @@
       },
 
       bringUp: function() {
-         console.log("BeeTooltip.create(), this", this);
-         this.tooltipContainer = $(document.createElement("div"))
-                        .hide()
-                     .addClass("beeTooltip-container")
-                  .text(this.tooltipParent.attr("data-original-title"))
-               .appendTo(this.tooltipParent)
+         if("undefined" === typeof (this.tooltipContainer)) {
+            // Not a previously detached element, so create new.
+            this.tooltipContainer = $(document.createElement("div"))
+                  .hide()
+               .addClass("beeTooltip-container")
+            .text(this.tooltipParent.attr("data-original-title"));
+         }
+
+         this.tooltipContainer.appendTo(this.tooltipParent)
             .stop()
          .show("fast");
       },
@@ -38,9 +41,7 @@
       bringDown: function() {
          var self = this;
 
-         console.log("BeeTooltip.bringDown(), this", this);
-
-         self.tooltipContainer.hide("fast", function() {
+         self.tooltipContainer.stop().hide("fast", function() {
             self.tooltipContainer.detach();
          });
       },
