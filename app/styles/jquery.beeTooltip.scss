@@ -1,3 +1,6 @@
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+
 .beeTooltip {
   position: relative;
 }
@@ -9,8 +12,11 @@
   top: -2em;
   white-space: nowrap;
 
+  padding: 5px;
+
   // Tooltip theme
-background-color: #ffc578; // Old browsers
-@include filter-gradient(#ffc578, #fb9d23, vertical); // IE6-9
-@include background-image(linear-gradient(top, hsla(34,100%,74%,1) 0%,hsla(34,96%,56%,1) 100%));
+	@include filter-gradient(#cc0000, #660000, vertical);
+	@include background-image(linear-gradient(top, hsla(0, 0%, 0%, 0.8) 0%, hsla(0, 0%, 0%, 0.6) 100%));
+	@include border-radius();
+	color: #ffffff;
 }
