@@ -1,0 +1,44 @@
+@import "compass/css3/border-radius";
+
+$tooltipHeight: 32px;
+$tooltipPaddingY: 3px;
+$tooltipPaddingX: 8px;
+$tooltipArrowLeft: 10px;
+
+$tooltipArrowTop: ($tooltipHeight - (2 * $tooltipPaddingY));
+
+$tooltipBackgroundColor: hsla(0, 0%, 10%, 0.9);
+$tooltipForegroundColor: hsl(0, 0%, 100%);
+
+.beeTooltip {
+  position: relative;
+}
+
+.beeTooltip-container {
+  // Basic required styles
+  display: none;
+  position: absolute;
+  top: -($tooltipHeight);
+  white-space: nowrap;
+  padding: $tooltipPaddingY $tooltipPaddingX;
+
+  // Tooltip theme
+  font-size: 1em;
+	background-color: $tooltipBackgroundColor;
+  color: $tooltipForegroundColor;
+  @include border-radius();
+}
+
+.beeTooltip-arrow {
+  // CSS arrow trick. Courtesy: tutorialzine.com/2010/07/colortips-jquery-tooltip-plugin
+  position: absolute;
+
+  left: $tooltipArrowLeft;
+  top: $tooltipArrowTop;
+
+  width: 0;
+  height: 0;
+
+  border: 6px solid transparent;
+  border-top-color: $tooltipBackgroundColor;
+}
