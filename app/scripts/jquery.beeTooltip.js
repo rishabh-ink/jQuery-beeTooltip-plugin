@@ -1,3 +1,8 @@
+/*
+jQuery.beeTooltip plugin
+v0.1.1 - http://rishabhsrao.github.com/jquery-beetooltip-plugin
+A jQuery plugin to show tooltips on hover.
+*/
 (function($, window, document, undefined) {
    "use strict";
 
@@ -19,7 +24,7 @@
          this.tooltipParent.on("mouseover", $.proxy(this.bringUp, this));
          this.tooltipParent.on("mouseout", $.proxy(this.bringDown, this));
 
-         this.manageTitleAttribute();
+         this.moveTitleAttribute();
 
          return this;
       },
@@ -28,25 +33,35 @@
          if("undefined" === typeof (this.tooltipContainer)) {
             // Not a previously detached element, so create new.
             this.tooltipContainer = $(document.createElement("div"))
-                  .hide()
-               .addClass("beeTooltip-container")
-            .text(this.tooltipParent.attr("data-original-title"));
+               .hide()
+            .addClass("beeTooltip-container");
+
+            var tooltipInner = $(document.createElement("span"))
+                  .addClass("beeTooltip-content")
+               .text(this.tooltipParent.attr("data-original-title"))
+            .appendTo(this.tooltipContainer);
+
+            var arrow = $(document.createElement("span"))
+               .addClass("beeTooltip-arrow")
+            .prependTo(this.tooltipContainer);
          }
 
          this.tooltipContainer.appendTo(this.tooltipParent)
             .stop()
-         .show("fast");
+         .show("fade", this.options.effectSpeed);
       },
 
       bringDown: function() {
          var self = this;
 
-         self.tooltipContainer.stop().hide("fast", function() {
+         self.tooltipContainer.stop().hide("fade", this.options.effectSpeed, function() {
             self.tooltipContainer.detach();
          });
       },
 
-      manageTitleAttribute: function() {
+      // Moves the title attribute to data-original-title attribute.
+      // Courtesy https://github.com/twitter/bootstrap/blob/master/js/bootstrap-tooltip.js#L185
+      moveTitleAttribute: function() {
          var tpParent = this.tooltipParent;
 
          if (tpParent.attr("title") || typeof(tpParent.attr("data-original-title")) != "string") {
@@ -72,7 +87,7 @@
    };
 
    $.fn.beeTooltip.options = {
-      effect: "slide"
+      effectSpeed: "normal" // The jQuery animation effect speed.
    };
 
 })(jQuery, window, document);
