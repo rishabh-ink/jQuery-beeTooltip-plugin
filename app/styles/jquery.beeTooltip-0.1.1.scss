@@ -10,10 +10,6 @@ $tooltipArrowTop: ($tooltipHeight - (2 * $tooltipPaddingY));
 $tooltipBackgroundColor: hsla(0, 0%, 10%, 0.9);
 $tooltipForegroundColor: hsl(0, 0%, 100%);
 
-.beeTooltip {
-  position: relative;
-}
-
 .beeTooltip-container {
   // Basic required styles
   display: none;
@@ -23,7 +19,7 @@ $tooltipForegroundColor: hsl(0, 0%, 100%);
   padding: $tooltipPaddingY $tooltipPaddingX;
 
   // Tooltip theme
-  font-size: 1em;
+  font-size: 12px;
 	background-color: $tooltipBackgroundColor;
   color: $tooltipForegroundColor;
   @include border-radius();

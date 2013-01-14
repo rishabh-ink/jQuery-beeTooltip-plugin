@@ -18,45 +18,87 @@ A jQuery plugin to show tooltips on hover.
 
    var BeeTooltip = {
       initialize: function(userOptions, tooltipParent) {
-         this.options = $.extend({}, $.fn.beeTooltip.options, userOptions);
-         this.tooltipParent = tooltipParent;
 
-         this.tooltipParent.on("mouseover", $.proxy(this.bringUp, this));
-         this.tooltipParent.on("mouseout", $.proxy(this.bringDown, this));
+         var self = this;
 
-         this.moveTitleAttribute();
+         self.tooltipParent = tooltipParent;
+
+         self.tooltipParent.css({
+            "position": "relative"
+         });
+   
+         self.moveTitleAttribute();
+
+         switch(typeof userOptions) {
+            case "object": {
+               self.options = $.extend({}, $.fn.beeTooltip.options, userOptions);
+               break;
+            }
+
+            case "string": {
+               self.options = $.fn.beeTooltip.options;
+
+               switch(userOptions) {
+                  case "show": {
+                     console.log("Showing", self);
+                     self.show.call(self);
+                     break;
+                  }
+
+                  case "hide": {
+                     console.log("Hiding", self);
+                     self.hide.call(self);
+                     break;
+                  }
+               }
+
+               break;
+            }
+
+            default: {
+               self.options = $.fn.beeTooltip.options;
+               break;
+            }
+         }
+
+         self.tooltipParent.on("mouseenter", $.proxy(self.show, self));
+         self.tooltipParent.on("mouseout", $.proxy(self.hide, self));
 
          return this;
       },
 
-      bringUp: function() {
+      show: function() {
+         console.log("show(), this", this);
          if("undefined" === typeof (this.tooltipContainer)) {
             // Not a previously detached element, so create a new one.
             this.tooltipContainer = $(document.createElement("div"))
                .hide()
             .addClass(this.options.containerClass);
 
+            // Tooltip arrow element.
+            $(document.createElement("span"))
+               .addClass("beeTooltip-arrow")
+            .appendTo(this.tooltipContainer);
+
             // Tooltip content element.
             $(document.createElement("span"))
                   .addClass(this.options.contentClass)
                .text(this.tooltipParent.attr("data-original-title"))
             .appendTo(this.tooltipContainer);
-
-            // Tooltip arrow element.
-            $(document.createElement("span"))
-               .addClass("beeTooltip-arrow")
-            .prependTo(this.tooltipContainer);
          }
 
-         this.tooltipContainer.appendTo(this.tooltipParent)
-            .stop()
-         .show("fade", this.options.effectSpeed);
+         this.tooltipContainer.appendTo(this.tooltipParent).show("fade", this.options.effectSpeed);
       },
 
-      bringDown: function() {
+      hide: function() {
          var self = this;
+         console.log("hide(), this", this);
 
-         self.tooltipContainer.stop().hide("fade", this.options.effectSpeed, function() {
+         if("undefined" === typeof (self.tooltipContainer)) {
+            self.tooltipContainer = self.tooltipParent.find("." + this.options.containerClass);
+         }
+
+         self.tooltipContainer.hide("fade", this.options.effectSpeed, function() {
             self.tooltipContainer.detach();
          });
       },

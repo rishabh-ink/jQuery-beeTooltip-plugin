@@ -2,7 +2,7 @@
    "use strict";
 
    $(document).ready(function() {
-      $(".beeTooltip").beeTooltip();
+      $("[title]").beeTooltip();
    });
 
 })(jQuery, window, document);
