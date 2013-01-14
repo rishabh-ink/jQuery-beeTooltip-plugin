@@ -26,7 +26,7 @@ A jQuery plugin to show tooltips on hover.
          self.tooltipParent.css({
             "position": "relative"
          });
-   
+
          self.moveTitleAttribute();
 
          switch(typeof userOptions) {
