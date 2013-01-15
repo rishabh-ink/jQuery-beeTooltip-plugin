@@ -40,14 +40,16 @@ A jQuery plugin to show tooltips on hover.
 
                switch(userOptions) {
                   case "show": {
-                     console.log("Showing", self);
                      self.show.call(self);
                      break;
                   }
 
                   case "hide": {
-                     console.log("Hiding", self);
                      self.hide.call(self);
+                     break;
+                  }
+
+                  default: {
                      break;
                   }
                }
@@ -68,7 +70,6 @@ A jQuery plugin to show tooltips on hover.
       },
 
       show: function() {
-         console.log("show(), this", this);
          if("undefined" === typeof (this.tooltipContainer)) {
             // Not a previously detached element, so create a new one.
             this.tooltipContainer = $(document.createElement("div"))
@@ -92,15 +93,16 @@ A jQuery plugin to show tooltips on hover.
 
       hide: function() {
          var self = this;
-         console.log("hide(), this", this);
 
          if("undefined" === typeof (self.tooltipContainer)) {
             self.tooltipContainer = self.tooltipParent.find("." + this.options.containerClass);
          }
 
-         self.tooltipContainer.hide("fade", this.options.effectSpeed, function() {
-            self.tooltipContainer.detach();
-         });
+         if(0 < self.tooltipContainer.length) {
+            self.tooltipContainer.hide("fade", this.options.effectSpeed, function() {
+               self.tooltipContainer.detach();
+            });
+         }
       },
 
       // Moves the title attribute to data-original-title attribute.

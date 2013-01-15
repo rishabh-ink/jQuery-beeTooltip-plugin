@@ -14,6 +14,7 @@ $tooltipForegroundColor: hsl(0, 0%, 100%);
   // Basic required styles
   display: none;
   position: absolute;
+  left: 0;
   top: -($tooltipHeight);
   white-space: nowrap;
   padding: $tooltipPaddingY $tooltipPaddingX;
