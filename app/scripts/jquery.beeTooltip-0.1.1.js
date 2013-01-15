@@ -70,25 +70,34 @@ A jQuery plugin to show tooltips on hover.
       },
 
       show: function() {
-         if("undefined" === typeof (this.tooltipContainer)) {
-            // Not a previously detached element, so create a new one.
-            this.tooltipContainer = $(document.createElement("div"))
-               .hide()
-            .addClass(this.options.containerClass);
+         var self = this;
 
-            // Tooltip arrow element.
-            $(document.createElement("span"))
-               .addClass("beeTooltip-arrow")
-            .appendTo(this.tooltipContainer);
+         if("undefined" === typeof (self.tooltipContainer)) {
+            // Avoid duplicate tooltips by `find`ing the previously added toolip.
+            self.tooltipContainer = self.tooltipParent.find("." + self.options.containerClass);
 
-            // Tooltip content element.
-            $(document.createElement("span"))
-                  .addClass(this.options.contentClass)
-               .text(this.tooltipParent.attr("data-original-title"))
-            .appendTo(this.tooltipContainer);
+            if(1 > self.tooltipContainer.length) {
+               // Not a previously detached element, so create a new one.
+               self.tooltipContainer = $(document.createElement("div"))
+                  .hide()
+               .addClass(self.options.containerClass);
+
+               // Tooltip arrow element.
+               $(document.createElement("span"))
+                  .addClass("beeTooltip-arrow")
+               .appendTo(self.tooltipContainer);
+
+               // Tooltip content element.
+               $(document.createElement("span"))
+                     .addClass(self.options.contentClass)
+                  .text(self.tooltipParent.attr("data-original-title"))
+               .appendTo(self.tooltipContainer);
+
+               self.tooltipContainer.appendTo(self.tooltipParent);
+            }
          }
 
-         this.tooltipContainer.appendTo(this.tooltipParent).show("fade", this.options.effectSpeed);
+         self.tooltipContainer.show("fade", self.options.effectSpeed);
       },
 
       hide: function() {
