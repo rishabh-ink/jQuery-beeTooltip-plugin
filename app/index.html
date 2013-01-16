@@ -17,33 +17,113 @@
     </head>
     <body>
 
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-        <![endif]-->
+      <!--[if lt IE 7]>
+          <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+      <![endif]-->
 
-        <div class="container well">
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-            <h1></h1>
+      <div class="wrapper">
 
-            <h2></h2>
-
-            <p>Hello Lorem ipsum dolor sit amet, consectetur <a href="#" title="This is a simple tooltip on an anchor tag.">basic tooltip</a>. Nostrum vitae at veritatis facere <span id="tooltip-trigger" title="This tooltip is triggered via JavaScript.">perferendis</span> delectus recusandae fugiat omnis commodi quisquam illo alias <span title="Another example on a span tag.">tooltip</span> quod vitae sed assumenda doloribus modi!</p>
-
+        <div id="title">
+          <h1>jQuery.beeTooltip plugin</h1>
+          <p>A jQuery plugin to show tooltips.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/rishabhsrao">rishabhsrao</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
         </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
-        <script>window.jQuery || document.write('<script src="../components/jquery/jquery.js"><\/script>')</script>
-        <script src="scripts/vendor/jquery-ui-1.9.2.fx.js"></script>
-        <script src="scripts/main.js"></script>
-        <script src="scripts/jquery.beeTooltip-0.1.2.js"></script>
+        <h3>Introduction</h3>
+        <p>jQuery.beeTooltip is a jQuery plugin to show tooltips.</p>
 
+        <h3>Demo</h3>
+        <p>Hover over the words in the paragraph below...</p>
+        <p>Hello Lorem ipsum dolor sit amet, consectetur <a href="#" title="This is a simple tooltip on an anchor tag."><strong>basic tooltip</strong></a>. Nostrum vitae at veritatis facere <span id="tooltip-trigger" title="This tooltip is triggered via JavaScript."><strong>this tooltip can also be trigged via JavaScript</strong></span> delectus recusandae fugiat omnis commodi quisquam illo alias <span title="Another example on a span tag."><strong>another tooltip example</strong></span> quod vitae sed assumenda doloribus modi!</p>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+        <p>You can also trigger tooltips via the JavaScript methods:
+          <a href="#" id="beeTooltip-show" title="Click to show the tooltip.">show()</a> and 
+          <a href="#" id="beeTooltip-hide" title="Click to hide the tooltip.">hide()</a>.
+        </p>
+        <h3>How to use</h3>
+
+        <ol>
+          <li>Download the binary files from the <a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin/tree/master/bin"><code>/bin</code> directory</a>. The directory has minified and non-minifed versions of the JavaScript and CSS files. If you're using SCSS/Compass, then you might want to take a look at the <code>.scss</code> file.</li>
+          <li>Place the CSS and JavaScript files in your project directory</li>
+          <li>Make sure <a href="http://jquery.com" title="jQuery is a dependency.">jQuery</a> and <a href="http://jqueryui.com" title="This is required because the fade effect of jQuery UI is used in this plugin.">jQuery UI</a> (just the effects library will also do) are included in your page</li>
+            <p>Reference them in your web page:</p>
+
+            <pre><code>&lt;script src="jquery.beeTooltip-0.1.2.min.js"&gt;&lt;/script&gt;
+            &lt;link rel="stylesheet" href="jquery.beeTooltip-0.1.2.min.css" /&gt;
+            </code></pre>
+          </li>
+          <li>Add a <code>title</code> attribute to your elements</li>
+          <li>Select your elements using jQuery</li>
+          <li>Call <code>.beeTooltip([options])</code> on them</li>
+          <li>Hover your mouse over the elements and enjoy your tooltip!</li>
+        </ol>
+
+        <p>You can customize the styles in the <code>jQuery.beeTooltip.css</code> file.</p>
+
+        <h3>Options</h3>
+
+        <p>The plugin provides a few options like:</p>
+
+        <ul>
+          <li>
+            <code>effectSpeed</code>: The jQuery animation effect speed. (defaults to "normal", takes [<code>"slow"</code> | <code>"normal"</code> | <code>"fast"</code> | <code>&lt;any integer&gt;</code>])
+          </li>
+          <li>
+            <code>containerClass</code>: The class to add to the tooltip container. (defaults to <code>"beeTooltip-container"</code>, takes <code>&lt;any string&gt;</code>)
+          </li>
+          <li>
+            <code>contentClass</code>: The class to add to the tooltip text content. (defaults to <code>"beeTooltip-content"</code>, takes <code>&lt;any string&gt;</code>)
+          </li>
+        </ul>
+
+        <h3>JavaScript API</h3>
+        <p>You can also hide and show the tooltip via JavaScript using the <code>show()</code> and <code>hide()</code> methods. You call these methods by passing the strings, <code>"show"</code> or <code>"hide"</code>, respectively. A few examples are shown below:</p>
+
+        <pre><code>// Shows the tooltip
+        $("#sample-tooltip").beeTooltip("show");
+
+        // Hides it back
+        $("#sample-tooltip").beeTooltip("hide");
+        </code></pre>
+
+        <h3>Known issues</h3>
+        <ul>
+          <li>The plugin creates the tooltip container inside the element. Thus the tooltip will not work on tags like <code>&lt;img&gt;</code>. I'm looking into it.</li>
+          <li>Only the fade effect works. Other effects like slide etc. are disrupting the DOM structure. Probably a CSS positioning issue.</li>
+        </ul>
+
+        <h3>Author notes</h3>
+        <p>This plugin was developed by me, <a href="http://rishabhsrao.github.com" title="That's me!">Rishabh Rao</a>. This is my first jQuery plugin and I am still learning jQuery while developing it.</p>
+        <p>This plugin is licensed under the <a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin/blob/master/LICENSE.md">MIT license</a>.</p>
+
+        <h3>Suggestions, Support and Contact</h3>
+        <p>Got an issue? Feel free to raise it in Issues tab. I'll be happy to help!
+        Got a suggestion? You're most welcome! Or just want to say, "hi!"? Ping me on Twitter at <a href="https://twitter.com/rishabhsrao">@rishabhsrao</a>!</p>
+
+      </div>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+      <script>window.jQuery || document.write('<script src="../components/jquery/jquery.js"><\/script>')</script>
+      <script src="scripts/vendor/jquery-ui-1.9.2.fx.js"></script>
+      <script src="scripts/jquery.beeTooltip-0.1.2.js"></script>
+      <script src="scripts/main.js"></script>
+
+      <script>
+          var _gaq=[['_setAccount','UA-37630153-1'],['_trackPageview']];
+          (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+          g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+          s.parentNode.insertBefore(g,s)}(document,'script'));
+      </script>
     </body>
 </html>
