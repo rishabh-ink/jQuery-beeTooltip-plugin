@@ -17,6 +17,10 @@ A jQuery plugin to show tooltips on hover.
    }
 
    var BeeTooltip = {
+      constants: {
+         dataIndicator: "beeTooltip-shown"
+      },
+
       initialize: function(userOptions, tooltipParent) {
 
          var self = this;
@@ -70,47 +74,52 @@ A jQuery plugin to show tooltips on hover.
       },
 
       show: function() {
+         console.log("Show called.");
          var self = this;
 
-         if("undefined" === typeof (self.tooltipContainer)) {
-            // Avoid duplicate tooltips by `find`ing the previously added toolip.
-            self.tooltipContainer = self.tooltipParent.find("." + self.options.containerClass);
+         // Proceed only if the tooltip is not already shown by a previous method call.
+         if(!(self.tooltipParent.data(self.constants.dataIndicator))) {
+            // Not a previously detached element, so create a new one.
+            self.tooltipContainer = $(document.createElement("div"))
+               .hide()
+            .addClass(self.options.containerClass);
 
-            if(1 > self.tooltipContainer.length) {
-               // Not a previously detached element, so create a new one.
-               self.tooltipContainer = $(document.createElement("div"))
-                  .hide()
-               .addClass(self.options.containerClass);
+            // Tooltip arrow element.
+            $(document.createElement("span"))
+               .addClass("beeTooltip-arrow")
+            .appendTo(self.tooltipContainer);
 
-               // Tooltip arrow element.
-               $(document.createElement("span"))
-                  .addClass("beeTooltip-arrow")
-               .appendTo(self.tooltipContainer);
+            // Tooltip content element.
+            $(document.createElement("span"))
+                  .addClass(self.options.contentClass)
+               .text(self.tooltipParent.attr("data-original-title"))
+            .appendTo(self.tooltipContainer);
 
-               // Tooltip content element.
-               $(document.createElement("span"))
-                     .addClass(self.options.contentClass)
-                  .text(self.tooltipParent.attr("data-original-title"))
-               .appendTo(self.tooltipContainer);
+            self.tooltipContainer
+               .appendTo(self.tooltipParent)
+            .show("fade", self.options.effectSpeed);
 
-               self.tooltipContainer.appendTo(self.tooltipParent);
-            }
+            // Setup a flag indicating that the tooltip is now shown.
+            self.tooltipParent.eq(0).data(self.constants.dataIndicator, true);
          }
-
-         self.tooltipContainer.show("fade", self.options.effectSpeed);
       },
 
       hide: function() {
          var self = this;
 
-         if("undefined" === typeof (self.tooltipContainer)) {
-            self.tooltipContainer = self.tooltipParent.find("." + this.options.containerClass);
-         }
+         // Detach the element only if the tooltip is visible.
+         if(true === self.tooltipParent.data(self.constants.dataIndicator)) {
+            // If `hide()` was called via the JavaScript API, then `tooltipContainer` is `undefined`.
+            if("undefined" === typeof (self.tooltipContainer)) {
+               self.tooltipContainer = self.tooltipParent.find("." + $.fn.beeTooltip.options.containerClass);
+            }
 
-         if(0 < self.tooltipContainer.length) {
             self.tooltipContainer.hide("fade", this.options.effectSpeed, function() {
                self.tooltipContainer.detach();
             });
+
+            // Setup a flag indicating that the tooltip is now hidden.
+            self.tooltipParent.data(self.constants.dataIndicator, false);
          }
       },
 
@@ -126,8 +135,8 @@ A jQuery plugin to show tooltips on hover.
    };
 
    $.fn.beeTooltip = function(userOptions) {
-      return this.each(function() {
-         var tooltipParent = $(this),
+      return this.each(function(index, value) {
+         var tooltipParent = $(value),
              beeTooltip = Object.create(BeeTooltip);
 
          // Tooltips are only for elements having a `title` attribute.
