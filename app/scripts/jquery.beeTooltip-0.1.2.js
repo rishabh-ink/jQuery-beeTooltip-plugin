@@ -74,6 +74,7 @@ A jQuery plugin to show tooltips on hover.
       },
 
       show: function() {
+         console.log("Show called.");
          var self = this;
 
          // Proceed only if the tooltip is not already shown by a previous method call.
@@ -110,7 +111,7 @@ A jQuery plugin to show tooltips on hover.
          if(true === self.tooltipParent.data(self.constants.dataIndicator)) {
             // If `hide()` was called via the JavaScript API, then `tooltipContainer` is `undefined`.
             if("undefined" === typeof (self.tooltipContainer)) {
-               self.tooltipContainer = self.tooltipParent.find("." + $.fn.beeTooltip.options);
+               self.tooltipContainer = self.tooltipParent.find("." + $.fn.beeTooltip.options.containerClass);
             }
 
             self.tooltipContainer.hide("fade", this.options.effectSpeed, function() {
