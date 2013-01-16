@@ -18,7 +18,7 @@
 .beeTooltip-arrow {
   position: absolute;
   left: 10px;
-  top: 26px;
+  bottom: -12px;
   width: 0;
   height: 0;
   border: 6px solid transparent;
