@@ -1,8 +1,5 @@
 /* Will be compiled down to a single stylesheet with your sass files */
 
-@import "compass";
-@import "bootstrap";
-@import "github-pages-midnight-theme";
-@import "github-pages-midnight-theme-ie";
-@import "github-pages-midnight-theme-pygment_trac";
+@import "vendor/github-pages-midnight-theme/theme";
+@import "vendor/highlightjs/tomorrow-night";
 @import "jquery.beeTooltip-0.1.2";
