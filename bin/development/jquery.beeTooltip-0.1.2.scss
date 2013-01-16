@@ -4,8 +4,7 @@ $tooltipHeight: 32px;
 $tooltipPaddingY: 3px;
 $tooltipPaddingX: 8px;
 $tooltipArrowLeft: 10px;
-
-$tooltipArrowTop: ($tooltipHeight - (2 * $tooltipPaddingY));
+$tooltipArrowBottom: -12px;
 
 $tooltipBackgroundColor: hsla(0, 0%, 10%, 0.9);
 $tooltipForegroundColor: hsl(0, 0%, 100%);
@@ -31,7 +30,7 @@ $tooltipForegroundColor: hsl(0, 0%, 100%);
   position: absolute;
 
   left: $tooltipArrowLeft;
-  top: $tooltipArrowTop;
+  bottom: $tooltipArrowBottom;
 
   width: 0;
   height: 0;
