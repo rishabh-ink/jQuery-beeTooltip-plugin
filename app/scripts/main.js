@@ -2,6 +2,8 @@
    "use strict";
 
    $(document).ready(function() {
+      hljs.initHighlighting();
+      
       $("[title]").beeTooltip();
 
       $("#beeTooltip-show").on("click", function(event) {

@@ -6,8 +6,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
+        <title>jQuery beeTooltip</title>
+        <meta name="description" content="A jQuery plugin to show tooltips.">
         <meta name="viewport" content="width=device-width">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -21,20 +21,20 @@
           <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
       <![endif]-->
 
-      <div id="header">
+      <header>
         <nav>
           <li class="fork"><a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin">View On GitHub</a></li>
           <li class="downloads"><a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin/zipball/master">ZIP</a></li>
           <li class="downloads"><a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin/tarball/master">TAR</a></li>
           <li class="title">DOWNLOADS</li>
         </nav>
-      </div><!-- end header -->
+      </header>
 
-      <div class="wrapper">
+      <section class="wrapper">
 
         <div id="title">
-          <h1>jQuery.beeTooltip plugin</h1>
-          <p>A jQuery plugin to show tooltips.</p>
+          <h1>jQuery.beeTooltip</h1>
+          <p>A jQuery plugin to show tooltips</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/rishabhsrao">rishabhsrao</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
@@ -54,13 +54,17 @@
         <h3>How to use</h3>
 
         <ol>
-          <li>Download the binary files from the <a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin/tree/master/bin"><code>/bin</code> directory</a>. The directory has minified and non-minifed versions of the JavaScript and CSS files. If you're using SCSS/Compass, then you might want to take a look at the <code>.scss</code> file.</li>
+          <li>Download the binary files from the <a href="https://github.com/rishabhsrao/jQuery-beeTooltip-plugin/tree/master/bin">/bin directory</a> of the repo. This directory has minified and non-minifed versions of the JavaScript and CSS files. If you're using SCSS/Compass, then you might want to take a look at the <strong>.scss</strong> file there.</li>
           <li>Place the CSS and JavaScript files in your project directory</li>
-          <li>Make sure <a href="http://jquery.com" title="jQuery is a dependency.">jQuery</a> and <a href="http://jqueryui.com" title="This is required because the fade effect of jQuery UI is used in this plugin.">jQuery UI</a> (just the effects library will also do) are included in your page</li>
+          <li>Make sure <a href="http://jquery.com" title="jQuery is a dependency.">jQuery</a> and <a href="http://jqueryui.com" title="This is required because the 'fade' effect of jQuery UI is used in this plugin.">jQuery UI effects (fade)</a> are included in your page</li>
             <p>Reference them in your web page:</p>
+            <pre><code class="html">
+&lt;link rel="stylesheet" href="jquery.beeTooltip-0.1.2.min.css" /&gt;
 
-            <pre><code>&lt;script src="jquery.beeTooltip-0.1.2.min.js"&gt;&lt;/script&gt;
-            &lt;link rel="stylesheet" href="jquery.beeTooltip-0.1.2.min.css" /&gt;
+&lt;script src="jquery-1.8.3.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.ui.effect.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.ui.effect-fade.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.beeTooltip-0.1.2.min.js"&gt;&lt;/script&gt;
             </code></pre>
           </li>
           <li>Add a <code>title</code> attribute to your elements</li>
@@ -77,24 +81,25 @@
 
         <ul>
           <li>
-            <code>effectSpeed</code>: The jQuery animation effect speed. (defaults to "normal", takes [<code>"slow"</code> | <code>"normal"</code> | <code>"fast"</code> | <code>&lt;any integer&gt;</code>])
+            <code class="javascript">effectSpeed</code>: The jQuery animation effect speed. (defaults to "normal", takes [<code class="javascript">"slow"</code> | <code class="javascript">"normal"</code> | <code class="javascript">"fast"</code> | <code class="javascript">&lt;any integer&gt;</code>])
           </li>
           <li>
-            <code>containerClass</code>: The class to add to the tooltip container. (defaults to <code>"beeTooltip-container"</code>, takes <code>&lt;any string&gt;</code>)
+            <code class="javascript">containerClass</code>: The class to add to the tooltip container. (defaults to <code class="javascript">"beeTooltip-container"</code>, takes <code class="javascript">&lt;any string&gt;</code>)
           </li>
           <li>
-            <code>contentClass</code>: The class to add to the tooltip text content. (defaults to <code>"beeTooltip-content"</code>, takes <code>&lt;any string&gt;</code>)
+            <code class="javascript">contentClass</code>: The class to add to the tooltip text content. (defaults to <code class="javascript">"beeTooltip-content"</code>, takes <code class="javascript">&lt;any string&gt;</code>)
           </li>
         </ul>
 
         <h3>JavaScript API</h3>
         <p>You can also hide and show the tooltip via JavaScript using the <code>show()</code> and <code>hide()</code> methods. You call these methods by passing the strings, <code>"show"</code> or <code>"hide"</code>, respectively. A few examples are shown below:</p>
 
-        <pre><code>// Shows the tooltip
-        $("#sample-tooltip").beeTooltip("show");
+        <pre><code class="javascript">
+// Shows the tooltip
+$("#sample-tooltip").beeTooltip("show");
 
-        // Hides it back
-        $("#sample-tooltip").beeTooltip("hide");
+// Hides it back
+$("#sample-tooltip").beeTooltip("hide");
         </code></pre>
 
         <h3>Known issues</h3>
@@ -111,12 +116,15 @@
         <p>Got an issue? Feel free to raise it in Issues tab. I'll be happy to help!
         Got a suggestion? You're most welcome! Or just want to say, "hi!"? Ping me on Twitter at <a href="https://twitter.com/rishabhsrao">@rishabhsrao</a>!</p>
 
-      </div>
+      </section>
 
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
       <script>window.jQuery || document.write('<script src="../components/jquery/jquery.js"><\/script>')</script>
-      <script src="scripts/vendor/jquery-ui-1.9.2.fx.js"></script>
+      <script src="../components/jquery-ui/ui/jquery.ui.effect.js"></script>
+      <script src="../components/jquery-ui/ui/jquery.ui.effect-fade.js"></script>
+      <script src="scripts/vendor/highlight.pack.js"></script>
       <script src="scripts/jquery.beeTooltip-0.1.2.js"></script>
+      
       <script src="scripts/main.js"></script>
 
       <script>
