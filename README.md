@@ -8,3 +8,4 @@ A jQuery plugin to show tooltips on hover.
 See the [homepage](http://rishabhsrao.github.com/jQuery-beeTooltip-plugin/app) for demo and documentation.
 
 Licensed under the [MIT license](jQuery-beeTooltip-plugin/blob/master/LICENSE.md).
+-
