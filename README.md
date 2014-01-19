@@ -9,3 +9,4 @@ See the [homepage](http://rishabhsrao.github.com/jQuery-beeTooltip-plugin/app) f
 
 Licensed under the [MIT license](jQuery-beeTooltip-plugin/blob/master/LICENSE.md).
 -
+
